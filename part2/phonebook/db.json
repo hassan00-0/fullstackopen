@@ -1,0 +1,25 @@
+{
+  "persons": [
+    {
+      "name": "ali",
+      "number": "23",
+      "id": "EfdO7b6hNfU"
+    },
+    {
+      "name": "bahlol",
+      "number": "1111",
+      "id": "y9OmOOeOZSM"
+    },
+    {
+      "name": "mahmoud",
+      "number": "3",
+      "id": "be2IQFUcDvQ"
+    },
+    {
+      "name": "bahlõ",
+      "number": "3",
+      "id": "2qFRWy9TAKY"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
