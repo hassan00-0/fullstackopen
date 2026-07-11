@@ -2,7 +2,12 @@ import express from "express";
 import cors from "cors";
 
 const app = express();
+
+// middlewares
 app.use(cors());
+app.use(express.json());
+app.use(express.static("dist"));
+
 let notes = [
   {
     id: "1",
@@ -49,8 +54,6 @@ app.delete("/api/notes/:id", (req, res) => {
   notes = notes.filter((note) => note.id !== id);
   res.status(204).end();
 });
-
-app.use(express.json());
 
 const generateId = () => {
   const maxId =
