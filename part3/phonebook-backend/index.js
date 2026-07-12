@@ -1,5 +1,6 @@
 import express from "express";
 import morgan from "morgan";
+import cors from "cors";
 
 let persons = [
   {
@@ -37,6 +38,7 @@ app.use(express.json());
 app.use(
   morgan(":method :url :status :res[content-length] - :response-time ms :body"),
 );
+app.use(cors());
 
 // get all people
 app.get("/api/persons", (req, res) => {
@@ -83,7 +85,8 @@ app.post("/api/persons", (req, res) => {
 
   res.status(201).json(person);
 });
-const PORT = 3001;
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-  console.log(`server is running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
