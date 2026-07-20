@@ -73,6 +73,8 @@ const App = () => {
                   "error",
                 );
                 setPersons(persons.filter((p) => p.id !== personExists.id));
+              } else if (error.response.status === 400) {
+                showNotification(error.response.data.error, "error");
               } else {
                 showNotification("Failed to update number", "error");
               }
@@ -86,12 +88,20 @@ const App = () => {
       return;
     }
     const newPerson = { name: newName, number: newNumber };
-    Create(newPerson).then((response) => {
-      showNotification("person added successfully!", "success");
-      setPersons(persons.concat(response));
-      setNewName("");
-      setNewNumber("");
-    });
+    Create(newPerson)
+      .then((response) => {
+        showNotification("person added successfully!", "success");
+        setPersons(persons.concat(response));
+        setNewName("");
+        setNewNumber("");
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 400) {
+          showNotification(error.response.data.error, "error");
+        } else {
+          showNotification("Failed to add person", "error");
+        }
+      });
   };
 
   const handleSearch = (e) => {
